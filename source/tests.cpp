@@ -1,5 +1,6 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
+#include <cmath>
 
 int gcd(int a, int b){
     int sol;
@@ -42,6 +43,28 @@ unsigned int sum_multiplies(unsigned int limit){    //sum mult function
     }
     return sum;
 }
+
+float fract (float a){
+    float frac = a - int(a);
+    return frac;
+}
+
+float vol_cylinders (float h, float r){
+    float g = M_PI * r * r;
+    float vol = g * h;
+    return vol;
+}
+
+
+
+
+TEST_CASE("ret_frac", "[frac]")
+{
+    REQUIRE(fract(2.24f)==Approx(0.24f));
+    REQUIRE(fract(0.01f)==Approx(0.01f));
+    REQUIRE(fract(-1.12f)==Approx(-0.12f));
+}
+
 
 TEST_CASE("calc_gcd", "[gcd]")
 {
