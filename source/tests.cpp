@@ -55,6 +55,41 @@ float vol_cylinders (float h, float r){
     return vol;
 }
 
+bool is_prime (int sus_prime){
+    int range = sus_prime/2;
+    for (int x = 2; x<= range; x++){
+        if (sus_prime % range == 0){
+            return false;
+        }
+    }
+    return true;
+}
+
+int factorial (int limt){
+    int product =1;
+    for (int x = limt;x>0;x--){
+        product = product * x;
+    }
+    return product;
+}
+
+
+TEST_CASE("is_it_prime","[prime]")
+{
+    REQUIRE(is_prime(7)== true);
+    REQUIRE(is_prime(2)== true);
+    REQUIRE(is_prime(10)== false);
+}
+
+
+TEST_CASE("clac_factorial", "[fac]")
+{
+    REQUIRE(factorial(5)==120);
+    REQUIRE(factorial(0)==1);
+
+}
+
+
 TEST_CASE("calc_vol_cylinder", "[vol]")
 {
     REQUIRE(vol_cylinders(2.0f,1.0f)==Approx(2*M_PI));
