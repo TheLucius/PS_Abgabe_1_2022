@@ -45,17 +45,22 @@ unsigned int sum_multiplies(unsigned int limit){    //sum mult function
 }
 
 float fract (float a){
-    float frac = a - int(a);
+    float frac = a - int(a);    //calculate the fraction by subtracting an int cast
     return frac;
 }
 
 float vol_cylinders (float h, float r){
-    float g = M_PI * r * r;
-    float vol = g * h;
+    float g = M_PI * r * r;     //formula for calculating ground area
+    float vol = g * h;          //formula for volume
     return vol;
 }
 
-
+TEST_CASE("calc_vol_cylinder", "[vol]")
+{
+    REQUIRE(vol_cylinders(2.0f,1.0f)==Approx(2*M_PI));
+    REQUIRE(vol_cylinders(200.0f,13.7f)==Approx(117929.11f));
+    REQUIRE(vol_cylinders(99.0f,0.5f)==Approx(77.75442f));
+}
 
 
 TEST_CASE("ret_frac", "[frac]")
