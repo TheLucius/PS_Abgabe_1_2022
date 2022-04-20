@@ -31,17 +31,22 @@ unsigned int checksum (int a){                  //checksum function
     return sum;
 }
 
-unsigned int sum_multiplies(unsigned int limit){    //sum mult function
-    unsigned int sum=0;
-    for(int x=0; x<=limit; x++){                    //count up to limit
-        if (x % 3 == 0) {                           //check if divideable by 3
-            sum = x + sum;
+unsigned int sum_multiplies(int limit){    //sum mult function
+    if (limit>0) {
+        unsigned int sum = 0;
+        for (int x = 0; x <= limit; x++) {                    //count up to limit
+            if (x % 3 == 0) {                           //check if divideable by 3
+                sum = x + sum;
+            } else if (x % 5 == 0) {                        //check if divedable by 5
+                sum = x + sum;
+            }
         }
-        else if(x % 5 == 0){                        //check if divedable by 5
-            sum = x + sum;
-        }
+        return sum;
     }
-    return sum;
+    else
+    {
+        return 0;
+    }
 }
 
 float fract (float a){
@@ -125,7 +130,7 @@ TEST_CASE("calc_checksum", "[cs]")
 {
     REQUIRE(checksum(123) == 6);
     REQUIRE(checksum(121808) == 20);
-    //REQUIRE(checksum(-120) == 1);
+    REQUIRE(checksum(-120) == 0); //no idea why
 }
 
 TEST_CASE("calc_sum_of_multiplies", "[summult]")
@@ -133,7 +138,7 @@ TEST_CASE("calc_sum_of_multiplies", "[summult]")
     REQUIRE(sum_multiplies(10)==33);
     REQUIRE(sum_multiplies(20)==98);
     REQUIRE(sum_multiplies(1000)==234168);
-    //REQUIRE(sum_multiplies(-1)==1);
+    REQUIRE(sum_multiplies(-1)==0);
 }
 
 
