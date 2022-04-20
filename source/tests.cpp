@@ -73,6 +73,13 @@ int factorial (int limt){
     return product;
 }
 
+TEST_CASE("factorial", "[fact]")
+{
+    REQUIRE(factorial(6)==720);
+    REQUIRE(factorial(-1)==1);
+    REQUIRE(factorial(10)==3628800);
+}
+
 
 TEST_CASE("is_it_prime","[prime]")
 {
